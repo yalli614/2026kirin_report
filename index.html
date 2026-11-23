@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>기린초등학교 선도학교 운영 결과</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: 학교 공문처럼 단정하지만 학생 목소리가 들리는 결과 보고 페이지
+   IDEA: 운영사례 포스터를 펼친 결과 보고서, 회색 띠가 섹션을 나눔
+   PICTURE: 응답 학생 38명을 점 하나씩으로 그린 응답 지도
+   COLOUR and TYPE: 차분한 회색 바탕 + 푸른 계열 강조 + 짙은 청회색 잉크 / IBM Plex Sans KR 제목, Noto Sans KR 본문
+   LAYOUT: 노란 히어로 띠 → 과제 4칸 → 숫자 요약 → 문항 막대 → 학생 목소리 → 사례 → 종합 */
+:root{color-scheme:light dark;
+--bg:light-dark(#ffffff,#11151a);--ink:light-dark(#1f2a36,#e6ebf1);--soft:light-dark(#5a6675,#a3aebb);
+--gold:#2f6db5;--gold2:light-dark(#dbe7f5,#24364d);--band:light-dark(#f2f4f7,#171c22);--hero:light-dark(#e3e9f0,#1a222c);
+--line:light-dark(#dde2e8,#2c3540);--coral:#d0603d;--card:light-dark(#ffffff,#161b21);
+--l5:#2f6db5;--l4:#8cb6e6;--l3:light-dark(#cfd5dc,#56606b);--l2:#e8a07f;--l1:#d0603d}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Noto Sans KR",system-ui,sans-serif;overflow-x:clip;word-break:keep-all}
+h1,h2,h3{font-family:"IBM Plex Sans KR","Noto Sans KR",sans-serif;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(32px,5vw,52px)}h2{font-size:clamp(26px,3.2vw,36px);margin-bottom:8px}h3{font-size:19px}
+p{margin:0}
+.band{padding:clamp(28px,4vw,64px) max(5vw,16px)}
+.wrap{max-width:1240px;margin:0 auto}
+.lead{color:var(--soft);max-width:70ch;margin-bottom:24px}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav .scroll{display:flex;gap:4px;overflow-x:auto;padding:8px max(5vw,16px);max-width:1340px;margin:0 auto}
+nav a{flex:none;color:var(--ink);text-decoration:none;padding:10px 14px;border-radius:999px;font-size:15px;min-height:44px;display:flex;align-items:center}
+nav a:hover,nav a:focus-visible{background:var(--gold2);outline:none}
+.hero{background:var(--hero);color:var(--ink)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:center}
+.kicker{font-weight:700;font-size:15px;margin-bottom:12px}
+.goal{margin:18px 0 24px;font-size:17px;max-width:46ch}
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fact{background:var(--card);border-radius:12px;padding:12px 14px}
+.fact b{display:block;font:700 22px/1.2 "IBM Plex Sans KR",sans-serif;white-space:nowrap}
+.fact span{font-size:13px;color:var(--soft)}
+.map{background:#22303c;color:#eef2f6;border-radius:20px;padding:clamp(18px,3vw,30px)}
+.map .big{font:700 clamp(44px,7vw,72px)/1 "IBM Plex Sans KR",sans-serif;color:#8fc1ff}
+.map .cap{margin:6px 0 18px;font-size:15px;color:#c9d3de}
+.dots{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:8px;margin-bottom:16px}
+.dot{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;color:#1f2a36}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:#c9d3de}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.grid4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.task{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.task .tag{display:inline-block;background:var(--gold);color:#fff;font-weight:700;font-size:13px;border-radius:999px;padding:3px 12px;margin-bottom:10px}
+.task .slogan{font-weight:700;margin:6px 0 10px}
+.task ul{margin:0;padding-left:18px;color:var(--soft)}.task li{margin:3px 0}
+.alt{background:var(--band)}
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:34px}
+.num{border-top:4px solid var(--gold);padding-top:12px}
+.num b{display:block;font:700 clamp(30px,4vw,42px)/1.1 "IBM Plex Sans KR",sans-serif;white-space:nowrap}
+.num span{font-size:14px;color:var(--soft)}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+.dom{display:grid;grid-template-columns:8.5em minmax(0,1fr);gap:4px 12px;align-items:center;margin:12px 0}
+.dom .lab{font-weight:500;font-size:15px}
+.pair{display:grid;gap:4px}
+.bar{height:16px;background:var(--line);border-radius:4px;position:relative;overflow:hidden}
+.bar i{position:absolute;inset:0 auto 0 0;border-radius:4px}
+.barrow{display:grid;grid-template-columns:3.2em minmax(0,1fr) 3.6em;gap:8px;align-items:center;font-size:13px;color:var(--soft)}
+.barrow em{font-style:normal;text-align:right;color:var(--ink);font-weight:700;white-space:nowrap}
+.note{font-size:14px;color:var(--soft);margin-top:12px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.tabs button{font:inherit;font-size:15px;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tabs button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.item{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) 5.5em;gap:8px 16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.item .q{font-size:15px}.item .q small{color:var(--soft);margin-right:6px;font-weight:700}
+.stackbar{display:flex;height:26px;border-radius:6px;overflow:hidden;background:var(--line)}
+.stackbar span{display:grid;place-items:center;font-size:12px;font-weight:700;color:#1f2a36;transition:flex-basis .5s}
+.item .m{text-align:right;white-space:nowrap}.item .m b{font-size:18px;display:block}.item .m span{font-size:12px;color:var(--soft)}
+.flag{display:inline-block;font-size:12px;font-weight:700;border-radius:4px;padding:1px 6px;margin-left:6px;white-space:nowrap}
+.flag.up{background:var(--gold2)}.flag.low{background:light-dark(#fbe0d9,#4a2a22);color:light-dark(#a3341f,#f3b3a3)}
+.lk{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--soft);margin-bottom:8px}
+.lk i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.kw{display:grid;grid-template-columns:9em minmax(0,1fr) 3.5em;gap:10px;align-items:center;margin:10px 0;font-size:15px}
+.kw em{font-style:normal;font-weight:700;text-align:right;white-space:nowrap}
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:8px}
+.qcols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px;align-items:start}.qcol{display:grid;gap:10px}.qcol h3{padding-bottom:8px;border-bottom:3px solid var(--gold)}
+.learn{display:grid;grid-template-columns:7.5em minmax(0,1fr);gap:8px 12px;margin:14px 0 0}.learn dt{font-weight:700;color:var(--gold)}.learn dd{margin:0;font-size:15px}
+.good{margin:14px 0 0;padding-left:18px}.good li{margin:6px 0;font-size:15px}
+blockquote{margin:0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;font-size:16px}
+blockquote footer{margin-top:10px;font-size:13px;color:var(--soft)}
+.case h3{margin-bottom:6px}.case p{color:var(--soft);font-size:15px}
+.budget .barrow{grid-template-columns:7.5em minmax(0,1fr) 6.5em}
+.eval{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:28px}
+.eval .panel b{display:block;font-size:17px;margin-bottom:6px}
+.eval .panel p{font-size:15px;color:var(--soft)}
+.plan{background:#22303c;color:#eef2f6;border-radius:20px;padding:clamp(20px,3vw,32px)}
+.plan h3{color:#8fc1ff;margin-bottom:12px}
+.plan ol{margin:0;padding-left:20px}.plan li{margin:8px 0}
+footer.src{font-size:14px;color:var(--soft);border-top:1px solid var(--line)}
+footer.src ul{margin:8px 0 0;padding-left:18px}
+@media(max-width:900px){.hero .wrap,.two{grid-template-columns:minmax(0,1fr)}.quotes,.qcols,.eval{grid-template-columns:minmax(0,1fr)}.nums{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.grid4,.facts{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.grid4{grid-template-columns:minmax(0,1fr)}.item{grid-template-columns:minmax(0,1fr) 4.5em}.item .stackbar{grid-column:1/-1;grid-row:2}.dom{grid-template-columns:minmax(0,1fr)}.learn{grid-template-columns:minmax(0,1fr)}.budget .barrow{grid-template-columns:5.5em minmax(0,1fr) 5.5em}.dots{gap:6px}.dot{font-size:0}}
+</style>
+</head>
+<body>
+<nav aria-label="섹션"><div class="scroll">
+<a href="#overview">개요</a><a href="#tasks">운영 과제</a><a href="#survey">설문 결과</a><a href="#voice">학생 목소리</a><a href="#cases">우수 사례</a><a href="#review">종합 평가</a>
+</div></nav>
+
+<header class="band hero" id="overview"><div class="wrap">
+<div>
+<p class="kicker">2026년 AI·디지털 활용 선도학교 · 인제군</p>
+<h1>기린초등학교 선도학교 운영 결과</h1>
+<p class="goal">AI·디지털 도구를 활용한 맞춤형 피드백과 협력적 창작 활동으로 학생의 학습 주도성 신장</p>
+<div class="facts">
+<div class="fact"><b>10학급</b><span>전교 139명</span></div>
+<div class="fact"><b>3학급 48명</b><span>참여 학생 4·6학년</span></div>
+<div class="fact"><b>30,000천 원</b><span>운영 예산</span></div>
+<div class="fact"><b>8명</b><span>리더십팀 교원</span></div>
+<div class="fact"><b>2026학년도</b><span>운영 기간</span></div>
+<div class="fact"><b>79.2%</b><span>설문 응답률(38/48)</span></div>
+</div>
+</div>
+<figure class="map" style="margin:0" aria-label="학생별 평균 점수 분포">
+<div class="big">82.9%</div>
+<p class="cap">12개 문항 전체 긍정 응답 비율. 점 하나는 학생 한 명, 색은 학생별 12개 문항 평균.</p>
+<div class="dots" id="dots"></div>
+<div class="legend"><span><i style="background:#5b9be0"></i>4.5점 이상</span><span><i style="background:#a9c9ee"></i>4.0~4.49</span><span><i style="background:#cfd5dc"></i>3.5~3.99</span><span><i style="background:var(--l2)"></i>3.5 미만</span><span>· 숫자는 학년</span></div>
+</figure>
+</div></header>
+
+<section class="band" id="tasks"><div class="wrap">
+<h2>네 가지 운영 과제</h2>
+<p class="lead">필수과제 3개와 선택과제 1개를 운영 계획서에 따라 추진함.</p>
+<div class="grid4">
+<article class="task"><span class="tag">필수 ①</span><h3>AI·디지털 기반 교육자료와 연계한 교수·학습방법 혁신 및 교사의 역할 변화</h3><p class="slogan">지식 전달자에서 수업 디자이너·학습 촉진자로</p><ul><li>아이패드 기본 앱 공유 기능 활용 협력적 토의·토론 수업</li><li>키노트·아이무비 활용 교과 발표자료 및 영상 제작</li><li>학생 논의 흐름 분석 기반 심화 질문 및 수업 경로 설계</li><li>대시보드 관찰 기반 학습 촉진자·정서적 지지자 역할 실천</li></ul></article>
+<article class="task"><span class="tag">필수 ②</span><h3>AI·디지털 기반 교육자료를 활용한 학생 맞춤교육 적용</h3><p class="slogan">자기 속도로 배우고, 데이터로 피드백</p><ul><li>AI 코스웨어 활용 학생별 학습 수준 진단 및 수준별 학습</li><li>대시보드 기반 학습 결손 파악 및 보충·심화 과제 제시</li><li>AI 평가도구 활용 서술형 평가 분석 및 피드백</li><li>넘버스 클라우드 활동지 활용 학습 과정 누적·관리</li></ul></article>
+<article class="task"><span class="tag">필수 ③</span><h3>AI·디지털 기반 교육자료 활용 만족도 조사 실시</h3><p class="slogan">교육공동체의 목소리로 수업을 다시 설계</p><ul><li>학생·학부모·교사 대상 디지털 설문 실시</li><li>AI·디지털 도구 사용 편의성 및 학습 흥미도 변화 분석</li><li>조사 결과를 다음 학기 교육과정 및 수업 설계에 반영</li></ul></article>
+<article class="task"><span class="tag">선택</span><h3>학습공동체 운영: 실천 중심 교원학습공동체</h3><p class="slogan">함께 배우고 나누며 디지털 수업 역량 상향 평준화</p><ul><li>리더십팀–디지털 수업 미경험 교사 밀착 멘토링 운영</li><li>학년·교과별 AI·디지털 교육자료 활용 방안 공동 연구</li><li>디지털 기반 수업 공개 및 수업 나눔</li></ul></article>
+</div>
+</div></section>
+
+<section class="band alt" id="survey"><div class="wrap">
+<h2>학생들은 디지털 수업에 만족했고, 협력은 학년 구분 없이 높았음</h2>
+<p class="lead">4·6학년 학생 38명(4학년 24명, 6학년 14명)이 12개 문항에 5점 척도로 응답함. 사전 조사가 없어 학기 말 결과만 제시함.</p>
+<div class="nums">
+<div class="num"><b>4.32점</b><span>12개 문항 전체 평균(5점 만점)</span></div>
+<div class="num"><b>82.9%</b><span>긍정 응답('그렇다' 이상)</span></div>
+<div class="num"><b>52.0%</b><span>'매우 그렇다' 응답</span></div>
+<div class="num"><b>3.1%</b><span>부정 응답('아니다' 이하)</span></div>
+</div>
+<div class="two">
+<div class="panel">
+<h3>영역별 긍정 응답 비율</h3>
+<p class="note" style="margin:4px 0 6px">위 막대 4학년, 아래 막대 6학년</p>
+<div id="doms"></div>
+</div>
+<div class="panel">
+<h3>학년별로 보면</h3>
+<div class="nums" style="grid-template-columns:repeat(2,minmax(0,1fr));margin:14px 0 10px">
+<div class="num"><b>4.50점</b><span>4학년 평균 · 긍정 89.6%</span></div>
+<div class="num"><b>3.99점</b><span>6학년 평균 · 긍정 71.4%</span></div>
+</div>
+<p style="font-size:15px">협력·소통 영역은 두 학년 모두 90% 안팎으로 가장 고르게 높음. 6학년은 디지털 창작·활용(69.0%)과 학습 주도성(64.3%)에서 4학년보다 낮아, 고학년에 맞는 자기주도 과제 설계가 다음 과제임.</p>
+<p class="note">'수업 만족' 문항에서 4학년은 24명 전원이 긍정 응답함.</p>
+</div>
+</div>
+</div></section>
+
+
+<section class="band" id="voice"><div class="wrap">
+<h2>학생 서술형 응답 결과</h2>
+<p class="lead">서술형 3문항(좋았던 점, 가장 기억에 남는 활동, 새롭게 할 수 있게 된 것)에 대한 학생 응답 정리.</p>
+<div class="two">
+<div class="panel">
+<h3>학생들이 새로 배운 것</h3>
+<dl class="learn">
+<dt>AI 활용</dt><dd>챗GPT·제미나이 사용법, AI로 글 검토받고 고쳐 쓰기, AI 이미지로 내 진로 표현하기</dd>
+<dt>AI 바로 알기</dt><dd>AI가 항상 정확하지는 않다는 점, AI의 장단점과 피해 가능성 인식</dd>
+<dt>창작·발표</dt><dd>캔바로 나만의 발표자료 만들기, 공유해서 친구들과 함께 작품 만들기, 영상 넣은 활동지 만들기</dd>
+<dt>영상·그림</dt><dd>스톱모션·애니메이션 제작, 앱으로 자유롭게 그려서 표현하기</dd>
+<dt>탐구·글쓰기</dt><dd>실제 기사를 찾아보며 기사문 쓰기, 이미지 검색으로 자료 찾기</dd>
+<dt>기기 활용</dt><dd>아이패드 화면 분할, 앱 설치·설정 스스로 하기</dd>
+<dt>배우는 태도</dt><dd>못해도 계속 실천하면 조금씩 할 수 있다는 자신감</dd>
+</dl>
+</div>
+<div class="panel">
+<h3>학생들이 꼽은 좋았던 점</h3>
+<ul class="good">
+<li>모르는 것을 바로 검색하고 자세히 찾아볼 수 있음</li>
+<li>수업 내용을 더 쉽고 빠르게 이해할 수 있음</li>
+<li>캔바·책스책·나노바나나 등 다양한 AI·앱을 직접 써 봄</li>
+<li>내가 만든 자료로 발표하고 친구 발표를 들으며 배움</li>
+<li>AI와 함께 글을 검토하고 고쳐 볼 수 있음</li>
+<li>이전에 한 활동이 기록으로 남아 다시 볼 수 있음</li>
+<li>책보다 재미있는 활동이 많아 수업이 즐거워짐</li>
+</ul>
+</div>
+</div>
+<div class="qcols" id="qcols"></div>
+<p class="note">학생 응답은 맞춤법만 다듬어 옮김.</p>
+</div></section>
+
+<section class="band alt" id="cases"><div class="wrap">
+<h2>우수 사례</h2>
+<p class="lead">운영사례 포스터에 정리한 네 가지 사례.</p>
+<div class="grid4">
+<article class="panel case"><h3>AI 코스웨어·평가도구 활용 수준별 맞춤 학습</h3><p>대시보드로 학습 결손을 실시간 파악해 보충·심화 과제 제시, AI 평가도구로 서술형 평가 분석 후 학생별 맞춤 피드백 제공.</p></article>
+<article class="panel case"><h3>넘버스 클라우드 활동지로 실시간 학습 관리</h3><p>학생 결과를 클라우드에 실시간 누적해 학습 과정을 한눈에 확인하고, 누적 결과를 바탕으로 즉시 피드백하며 평가 자료로 활용.</p></article>
+<article class="panel case"><h3>캔바·키노트·아이무비로 디지털 창작 및 발표</h3><p>교과 학습 내용을 발표자료와 영상으로 재구성해 공유. 사회 시간 지역 문제 조사, 국어 시간 관심사 발표 등 모둠 협업으로 제작하고 상호 피드백 진행.</p></article>
+<article class="panel case"><h3>리더십팀 멘토링 기반 교원학습공동체</h3><p>디지털 수업 경험이 있는 리더십팀이 미경험 교사와 짝을 이뤄 수업 설계·공개·나눔을 함께 실천.</p></article>
+</div>
+</div></section>
+
+<section class="band" id="review"><div class="wrap">
+<h2>종합 평가와 앞으로의 계획</h2>
+<p class="lead">학생 만족도와 협력 경험은 뚜렷하게 높았고, 스스로 목표를 세우고 학습을 관리하는 힘은 더 키워야 함.</p>
+<div class="eval">
+<div class="panel"><b>디지털 수업 만족 92.1%</b><p>태블릿·앱 활용 수업, 디지털 도구로 함께 배우기 문항 모두 긍정 92.1%. 디지털 기반 수업이 일상 수업으로 자리 잡음.</p></div>
+<div class="panel"><b>창작 중심 수업 89.5%</b><p>나만의 디지털 작품 제작 문항 평균 4.58점. 서술형에서도 캔바 발표자료 제작이 가장 많이 언급됨.</p></div>
+<div class="panel"><b>학습 주도성은 보완 필요</b><p>활동 전 목표 설정 65.8%, 학습 자료 정리·관리 73.7%로 상대적으로 낮음. 특히 6학년에서 낮게 나타남.</p></div>
+</div>
+<div class="plan">
+<h3>2027학년도에 이어 갈 일</h3>
+<ol>
+<li>활동 시작 전 목표 세우기와 활동 후 성찰을 디지털 포트폴리오로 기록하는 루틴 도입</li>
+<li>6학년 수준에 맞는 자기주도 프로젝트형 과제 설계</li>
+<li>AI 코스웨어·평가도구·클라우드 활동지로 흩어진 학습 데이터를 한곳에서 관리하는 방안 마련</li>
+<li>소규모 학교 여건을 고려해 인근 학교와 공동 학습공동체 운영</li>
+<li>사전·사후 조사를 함께 실시해 변화를 비교할 수 있는 체계 마련</li>
+</ol>
+</div>
+</div></section>
+
+
+<script>
+{
+const D=[{"n":1,"q":"나는 오늘 배운 내용을 다른 사람에게 쉽게 설명할 수 있다.","dist":[16,11,10,1,0],"mean":4.11,"pos":71.1,"g4":{"mean":4.38,"pos":87.5,"dist":[13,8,2,1,0]},"g6":{"mean":3.64,"pos":42.9,"dist":[3,3,8,0,0]}},{"n":2,"q":"나는 오늘 배운 내용을 우리 생활과 연결해서 이야기할 수 있다.","dist":[14,17,6,1,0],"mean":4.16,"pos":81.6,"g4":{"mean":4.21,"pos":83.3,"dist":[10,10,3,1,0]},"g6":{"mean":4.07,"pos":78.6,"dist":[4,7,3,0,0]}},{"n":3,"q":"나는 친구들과 잘 이야기하고 함께 협력하여 활동할 수 있다.","dist":[22,13,3,0,0],"mean":4.5,"pos":92.1,"g4":{"mean":4.46,"pos":87.5,"dist":[14,7,3,0,0]},"g6":{"mean":4.57,"pos":100.0,"dist":[8,6,0,0,0]}},{"n":4,"q":"나는 배운 내용을 활용하여 나만의 아이디어를 담은 디지털 작품을 만들 수 있다. (캔바, 미리캔버스, 또는 여러 가지 앱 활용)","dist":[26,8,4,0,0],"mean":4.58,"pos":89.5,"g4":{"mean":4.96,"pos":100.0,"dist":[23,1,0,0,0]},"g6":{"mean":3.93,"pos":71.4,"dist":[3,7,4,0,0]}},{"n":5,"q":"나는 노력하면 더 잘할 수 있고, 더 성장할 수 있고 믿는다.","dist":[22,10,4,1,1],"mean":4.34,"pos":84.2,"g4":{"mean":4.54,"pos":91.7,"dist":[17,5,1,0,1]},"g6":{"mean":4.0,"pos":71.4,"dist":[5,5,3,1,0]}},{"n":6,"q":"나는 친구의 생각과 마음을 이해하며 서로 존중하며 이야기할 수 있다.","dist":[21,13,3,1,0],"mean":4.42,"pos":89.5,"g4":{"mean":4.46,"pos":91.7,"dist":[14,8,1,1,0]},"g6":{"mean":4.36,"pos":85.7,"dist":[7,5,2,0,0]}},{"n":7,"q":"나는 디지털 도구(앱, 서비스 등)를 활용하여 선생님, 친구, 학습 자료와 함께 계속 배울 수 있다.","dist":[25,10,2,1,0],"mean":4.55,"pos":92.1,"g4":{"mean":4.75,"pos":95.8,"dist":[20,3,0,1,0]},"g6":{"mean":4.21,"pos":85.7,"dist":[5,7,2,0,0]}},{"n":8,"q":"나는 내가 공부한 내용을 디지털 자료로 정리하고 스스로 관리할 수 있다.","dist":[15,13,8,2,0],"mean":4.08,"pos":73.7,"g4":{"mean":4.38,"pos":87.5,"dist":[12,9,3,0,0]},"g6":{"mean":3.57,"pos":50.0,"dist":[3,4,5,2,0]}},{"n":9,"q":"나는 태블릿, 다양한 앱을 활용하여 수업 활동을 하는 것이 만족스럽다.","dist":[28,7,3,0,0],"mean":4.66,"pos":92.1,"g4":{"mean":4.96,"pos":100.0,"dist":[23,1,0,0,0]},"g6":{"mean":4.14,"pos":78.6,"dist":[5,6,3,0,0]}},{"n":10,"q":"나는 디지털 수업에서 활동을 시작하기 전에 무엇을 해내고 싶은지 스스로 정했다.","dist":[15,10,11,2,0],"mean":4.0,"pos":65.8,"g4":{"mean":4.04,"pos":66.7,"dist":[11,5,6,2,0]},"g6":{"mean":3.93,"pos":64.3,"dist":[4,5,5,0,0]}},{"n":11,"q":"나는 디지털 수업에서 과제를 해결할 때 나에게 맞는 방법을 스스로 골랐다.","dist":[18,14,4,2,0],"mean":4.26,"pos":84.2,"g4":{"mean":4.46,"pos":91.7,"dist":[14,8,1,1,0]},"g6":{"mean":3.93,"pos":71.4,"dist":[4,6,3,1,0]}},{"n":12,"q":"나는 디지털 수업에서 처음에 해 본 방법이 잘 안 될 때 다른 방법을 시도했다.","dist":[15,15,6,2,0],"mean":4.13,"pos":78.9,"g4":{"mean":4.46,"pos":91.7,"dist":[14,8,1,1,0]},"g6":{"mean":3.57,"pos":57.1,"dist":[1,7,5,1,0]}}];
+const SM=[4.33, 4.17, 4.25, 4.33, 4.25, 4.25, 4.17, 4.58, 4.42, 4.58, 3.75, 5.0, 2.67, 3.58, 4.67, 4.08, 5.0, 3.33, 3.83, 3.75, 3.67, 3.92, 3.75, 3.5, 4.67, 4.67, 4.42, 4.75, 4.75, 4.67, 4.75, 4.58, 5.0, 5.0, 5.0, 4.92, 4.42, 4.58], SG=["4", "4", "4", "4", "4", "4", "4", "4", "6", "4", "6", "4", "4", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "6", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4"];
+const C=['var(--l5)','var(--l4)','var(--l3)','var(--l2)','var(--l1)'];
+const col=v=>v>=4.5?'#5b9be0':v>=4?'#a9c9ee':v>=3.5?'#cfd5dc':'var(--l2)';
+const order=SM.map((v,i)=>[v,SG[i]]).sort((a,b)=>b[0]-a[0]);
+document.getElementById('dots').innerHTML=order.map(([v,g])=>`<span class="dot" style="background:${col(v)}" title="${g}학년 평균 ${v.toFixed(2)}점">${g}</span>`).join('');
+const DOM=[['지식·이해',85.4,60.7],['협력·소통',89.6,92.9],['디지털 창작·활용',94.4,69.0],['성장 마인드',91.7,71.4],['수업 만족',100,78.6],['학습 주도성',83.3,64.3]];
+const row=(l,p,c)=>`<div class="barrow"><span>${l}</span><div class="bar"><i style="width:${p}%;background:${c}"></i></div><em>${p.toFixed(1)}%</em></div>`;
+document.getElementById('doms').innerHTML=DOM.map(([n,a,b])=>`<div class="dom"><span class="lab">${n}</span><div class="pair">${row('4학년',a,'var(--l5)')}${row('6학년',b,'var(--ink)')}</div></div>`).join('');
+const Q=[['좋았던 점',[['디지털 수업을 하면서 모르는 것이 있으면 바로바로 검색할 수 있어서 좋았다.','6학년'],['AI에 대해 알게 되었고, 장단점을 알아서 좋았다.','6학년'],['글을 같이 검토하고 고쳐 볼 수 있다는 점이 좋았다.','6학년'],['이해하기 쉬웠고, 더 많은 낱말과 문장을 자세히 알 수 있어서 좋았다.','6학년'],['책보다 재미있는 활동이 많다.','4학년'],['예전에 한 것이 남아 있는 것이 좋았다.','4학년']]],
+['가장 기억에 남는 활동',[['논설문을 쓴 뒤 AI에게 검토받았던 것. 앞으로 이런 활동을 할 때 바탕이 될 것 같다.','6학년'],['기사문을 쓸 때는 너무 힘들었는데, 다 쓰고 나니 기분이 너무 좋았다.','6학년'],['스톱모션. 생각보다 어려웠지만 재미있었다.','6학년'],['사회 시간에 내가 파는 물건을 포스터로 만들면서 기대되고 즐거웠다.','6학년'],['캔바로 자료 만들기. 가장 힘들었는데 가장 재미있었다.','4학년'],['우리 지역을 돌아다니며 지역 문제를 알아보고, 모둠 친구들과 캔바로 자료를 만든 것이 재미있었다.','4학년'],['자료를 만들고 친구들의 발표를 하나하나 들어 보니 재미있고 좋았다.','4학년'],['책스책으로 책을 쓰고 읽고, 퀴즈와 추천 활동을 해서 기억에 남았다.','4학년']]],
+['새롭게 할 수 있게 된 것',[['못해도 계속 실천하면 조금씩 할 수 있다는 것을 알았다.','4학년'],['AI가 다 정확한 것은 아니라는 것을 알게 되었다.','4학년'],['공유해서 친구들과 함께 작품을 만들 수 있게 되었다.','4학년'],['진로에 대해 AI로 내 이미지를 만들 수 있게 되었다.','6학년'],['실제 기사를 찾아보면서 기사문을 쓸 수 있게 되었다.','6학년'],['패드로 이렇게 많이 공부할 수 있는지 몰랐다.','6학년']]]];
+document.getElementById('qcols').innerHTML=Q.map(([h,qs])=>`<div class="qcol"><h3>${h}</h3>${qs.map(([q,g])=>`<blockquote>“${q}”<footer>${g} 학생</footer></blockquote>`).join('')}</div>`).join('');
+
+}
+</script>
+</body>
+</html>
